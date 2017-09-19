@@ -1,8 +1,8 @@
 % File src/library/QuasiSeq/man/PoisDev.Rd
      \name{PoisDev}
      \alias{PoisDev}
-     \title{Compute Poisson deviances (up to a constant) for given design matrix}
-     \description{A function called within \code{QL.fit} to compute Poisson deviances of each window for given design matrix}
+     \title{Compute Poisson Deviances for a Given Design Matrix}
+     \description{A function called within \code{QL.fit} to compute Poisson deviances of each window for given design matrix.}
      \usage{
 PoisDev(counts,design,log.offset,print.progress=TRUE,
         bias.fold.tolerance=1.10,chip.col.indicator)
@@ -66,7 +66,7 @@ Lund, Nettleton, McCarthy and Smyth (2012) "Detecting differential expression in
 McCullagh and Nelder (1989) "Generalized Linear Models", 2nd edition. London: Chapman and Hall.
 }
 
-\author{Steve Lund (\email{lundsp@gmail.com}), Emily Goren (\email{emily.goren@gmail.com})}
+\author{Emily Goren (\email{emily.goren@gmail.com}) based on modifications of code by Steve Lund.}
 
      \keyword{ChIP-seq, quasi-likelihood, Poisson}
 

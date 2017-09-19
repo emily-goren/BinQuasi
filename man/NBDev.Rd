@@ -1,8 +1,8 @@
 % File src/library/QuasiSeq/man/NBDev.Rd
      \name{NBDev}
      \alias{NBDev}
-     \title{Fit a negative binomial GLM for given design matrix}
-     \description{A function called within \code{QL.fit} to fit a negative binomial GLM to each window for given design matrix}
+     \title{Fit a Negative Binomial GLM for a Given Design Matrix}
+     \description{A function called within \code{QL.fit} to fit a negative binomial GLM to each window for given design matrix.}
      \usage{
 NBDev(counts,design,log.offset,nb.disp,print.progress=TRUE,
       bias.fold.tolerance=1.10,chip.col.indicator)
@@ -71,8 +71,7 @@ McCullagh and Nelder (1989) "Generalized Linear Models", 2nd edition. London: Ch
 }
 
 
-\author{Steve Lund (\email{lundsp@gmail.com}), Long Qu
-  (\email{long.qu@wright.edu}), Emily Goren (\email{emily.goren@gmail.com})}
+\author{Emily Goren (\email{emily.goren@gmail.com}) based on modifications of code by Steve Lund and Long Qu}
 
      \keyword{ChIP-seq, quasi-likelihood, negative binomial}
 

@@ -2,7 +2,7 @@
 \name{BQ}
 \alias{BQ}
 \title{Call Peaks in Replicated ChIP-seq Data via BinQuasi}
-\description{Use the BinQuasi algorithm to call peaks using ChIP-seq data on
+\description{Use the BinQuasi algorithm to call peaks using ChIP-seq data with
 biological repliates.}
 \usage{BQ(dir, ChIP.files, control.files, alpha=0.05,
           bin.size=NULL, frag.length=NULL, minimum.count=20,
@@ -17,10 +17,10 @@ biological repliates.}
    \item{alpha}{The desired significance threshold used to call
      peaks. Must be in (0, 0.5).}
   \item{bin.size}{Window size, constant across all samples, used to generate a partition for
-    counts. If not specified, it will be estimated based on Shimazaki
+    counts. If \code{NULL}, it will be estimated based on Shimazaki
     and Shinomoto (2007).}
   \item{frag.length}{Average length of the ChIP fragments in each sample
-    provided. Reads are extended to this length in the 5'-to-3' direction. If not specified, cross correlation will be used to
+    provided. Reads are extended to this length in the 5'-to-3' direction. If \code{NULL}, cross correlation will be used to
     estimate the fragment lengths. See Ramachandran, Palidwor, Porter, and Perkins (2013).}
   \item{minimum.count}{The count threshold used for filtering out
     windows with sparse counts. Any genomic window with counts less than
@@ -37,13 +37,13 @@ biological repliates.}
 	  (2012) should be used to compute p-values.}
 	\item{Dispersion}{Must be one of "Deviance" or "Pearson",
 	  specifying which type of estimator should be used for
-	  estimating quasi-likelihood dispersion parameter.}
+	  estimating the quasi-likelihood dispersion parameters.}
 	\item{log.offset}{A vector of log-scale, additive factors used
      to adjust estimated log-scale means for differences in library
      sizes across samples.  Commonly used offsets include
      \code{log.offset=log(colSums(counts))} and
-     \code{log.offset=log(apply(counts[rowSums(counts)!=0,],2,quantile,.75))}.  If not provided, the later offset is used.}
-     \item{NBdisp}{Used only when \code{Model="NegBin"}. Must be one of "trend", "common" or a vector of non-negative real numbers with length equal to \code{nrow(counts)}. Specifying \code{NBdisp="trend"} or \code{NBdisp="common"} will use {\link{estimateGLMTrendedDisp}} or \code{\link{estimateGLMCommonDisp}}, respectively, from the package \code{edgeR} to estimate negative binomial dispersion parameters for each window.  Estimates obtained from other sources can be used by entering \code{NBdisp} as a vector containing the negative binomial dispersion value to use for each window when fitting quasi-likelihood model.}
+     \code{log.offset=log(apply(counts[rowSums(counts)!=0,],2,quantile,.75))}.  If \code{NULL}, the later offset is used.}
+     \item{NBdisp}{Used only when \code{Model="NegBin"}. Must be one of "trend", "common" or a vector of non-negative real numbers with length equal to \code{nrow(counts)}. Specifying \code{NBdisp="trend"} or \code{NBdisp="common"} will use {\link{estimateGLMTrendedDisp}} or \code{\link{estimateGLMCommonDisp}}, respectively, from the package \code{edgeR} to estimate negative binomial dispersion parameters for each window.  Estimates obtained from other sources can be used by entering \code{NBdisp} as a vector containing the negative binomial dispersion value to use for each window when fitting the quasi-likelihood model.}
 	\item{bias.fold.tolerance}{A numerical value no smaller than
 	  1. If the bias reduction of maximum likelihood estimates of
 	  (log) fold change is likely to result in a ratio of fold
@@ -65,7 +65,7 @@ biological repliates.}
        dataframe. Windows with counts below this value were removed.}
      }
 \details{
-This function calls peaks using the methods of Goren, Wang, and Liu (to
+This function calls peaks in replicated CHiP-seq data using the methods of Goren, Wang, and Liu (to
 be submitted).}
 
 \references{

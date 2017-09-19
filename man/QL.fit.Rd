@@ -1,7 +1,7 @@
 % File src/library/QuasiSeq/man/QL.fit.Rd
      \name{QL.fit}
      \alias{QL.fit}
-     \title{Fit quasi-likelihood models to ChIP-seq data partitioned into a count matrix}
+     \title{Fit Quasi-Likelihood Models to Replicated ChIP-seq Data Partitioned into a Count Matrix}
      \description{
        Fit a quasi-likelihood model, where the ChIP regression
      coefficient is constrained to be nonnegative, to ChIP-seq data
@@ -37,19 +37,19 @@
 	\item{...}{arguments to be passed to the function \code{\link{estimateGLMTrendedDisp}} or \code{\link{estimateGLMCommonDisp}} from the package \code{edgeR}.}
 	}
 
-\value{list containing:
-	\item{"LRT"}{matrix providing unadjusted two-sided likelihood
+\value{A list containing:
+	\item{LRT}{matrix providing unadjusted two-sided likelihood
 	ratio test statistics.  Each column contains statistics from a
 	single hypothesis test that the ChIP coefficient is equal to
 	zero versus not equal to zero, applied separately to each window.}
-	\item{"phi.hat.dev"}{vector providing unshrunken, deviance-based
+	\item{phi.hat.dev}{vector providing unshrunken, deviance-based
 	estimates of quasi-dispersion (phi) for each window.}
-	\item{"phi.hat.pearson"}{vector providing unshrunken, Pearson estimates of quasi-dispersion (phi) for each window.}
-	\item{"mn.cnt"}{vector providing average count for each window.}
-	\item{"den.df"}{denominator degrees of freedom. Equal to the number of samples minus the number of fitted parameters in the full model.}
-	\item{"num.df"}{vector of numerator degrees of freedom for each test, computed as the difference in the number of fitted parameters between the full and reduced models for each test.}
-	\item{"Model"}{Either "Poisson" or "NegBin", specifying which model (quasi-Poisson or quasi-negative binomial, respectively) was used.}
-	\item{"nb.disp"}{only appears when \code{Model="NegBin"}.  Vector providing negative binomial dispersion parameter estimate used during fitting of quasi-negative binomial model for each gene.}
+	\item{phi.hat.pearson}{vector providing unshrunken, Pearson estimates of quasi-dispersion (phi) for each window.}
+	\item{mn.cnt}{vector providing average count for each window.}
+	\item{den.df}{denominator degrees of freedom. Equal to the number of samples minus the number of fitted parameters in the full model.}
+	\item{num.df}{vector of numerator degrees of freedom for each test, computed as the difference in the number of fitted parameters between the full and reduced models for each test.}
+	\item{Model}{Either "Poisson" or "NegBin", specifying which model (quasi-Poisson or quasi-negative binomial, respectively) was used.}
+	\item{nb.disp}{only appears when \code{Model="NegBin"}.  Vector providing negative binomial dispersion parameter estimate used during fitting of quasi-negative binomial model for each gene.}
 	\item{fitted.values}{matrix of fitted mean values without constraints.}
 	\item{coefficients}{matrix of estimated coefficients for each
 	window.  Note that these are given on the log
@@ -107,7 +107,7 @@ beta1 <- rep(0, regions); beta1[peak.idx] <- VGAM::rpareto(n.peaks, shape = 5, s
 mu.ChIP <- exp(beta0 + beta1)
 mu.input <- exp(beta0)
 # Negative binomial dispersion parameter
-phi <- geoR::rinvchisq(regions, df = 5)
+phi <- 1/rinvchisq(regions, df = 5)
 # Draw read counts using a negative binomial distribution
 C <- lapply(1:reps, function(r) MASS::rnegbin(regions,
                                               mu = mu.ChIP,
@@ -128,7 +128,6 @@ design.matrix  <- cbind(rep(1, reps*2), # Intercept
 chip.col.indicator <- c(0,1) # Second column of design matrix indicates ChIP sample
 fit <- QL.fit(counts, design.matrix, chip.col.indicator, Model = 'NegBin') # Fit model at window level.
 }}
-\author{Steve Lund (\email{lundsp@gmail.com}), Emily Goren (\email{emily.goren@gmail.com})}
-
+\author{Emily Goren (\email{emily.goren@gmail.com}) based on modifications of code by Steve Lund}
      \keyword{ChIP-seq, quasi-likelihood}
 

@@ -1,14 +1,13 @@
 % File src/library/QuasiSeq/man/call.peaks.Rd
      \name{call.peaks}
      \alias{call.peaks}
-     \title{Call peaks from a list of p-values}
+     \title{Call Peaks from a List of P-values}
      \description{
-       Call peaks from p-values corresponding to a test on windows of a
+       Call peaks from a list of p-values corresponding to window-level tests on a
        genomic partition of ChIP-seq counts. After correcting for
      multiple testing (using the Benjamini and Hochberg method), windows
-     that are significant according to the threshold provided are
-     retained as candidate regions after merging adjacent significatn
-     windows. Simes' adjustment is used to produce region-level p- and
+     that are significant according to the threshold provided are merged if adjacent and
+     retained as candidate regions. Simes' adjustment is used to produce region-level p- and
      q-values. Regions with q-values smaller than the significance
      threshold are returned as peaks.}
      \usage{
@@ -27,14 +26,14 @@
    \item{alpha}{The desired significance threshold in (0, 0.5).}
 	}
 
-\value{the called peaks as a data.frame with variables:
-	\item{"start"}{Genomic start locations of the called peaks.}
-	\item{"end"}{Genomic end locations of the called peaks.}
-	\item{"width"}{Width of the called peaks.}
-	\item{"chr"}{Chromosomes of the called peaks.}
-	\item{"P.val"}{p-values of the called peaks (adjusted using
+\value{The called peaks as a data.frame with variables:
+	\item{start}{Genomic start locations of the called peaks.}
+	\item{end}{Genomic end locations of the called peaks.}
+	\item{width}{Width of the called peaks.}
+	\item{chr}{Chromosomes of the called peaks.}
+	\item{P.val}{p-values of the called peaks (adjusted using
 	Simes' procedure).}
-	\item{"Q.val"}{q-values of the called peaks (computing using the
+	\item{Q.val}{q-values of the called peaks (computing using the
 	Benjamini and Hochberg procedure).}
 }
 

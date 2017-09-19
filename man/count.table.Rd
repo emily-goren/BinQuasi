@@ -1,7 +1,7 @@
 % File src/library/QuasiSeq/man/count.table.Rd
 \name{count.table}
 \alias{count.table}
-\title{Create a matrix of ChIP-seq count data}
+\title{Create a Matrix of ChIP-seq Count Data}
 \description{Create a matrix of ChIP-seq count data from sorted bam
   files using a non-overlapping genomic partition.}
 \usage{
@@ -16,16 +16,16 @@ count.table(dir, ChIP.files, control.files, bin.size = NULL,
   input/control sample files in sorted bam format.}
   \item{bin.size}{Window size, constant across all samples, used to
     generate a non-overlapping partition for
-    counts. If not specified, an estimate will be used (see details).}
+    counts. If \code{NULL}, an estimate will be used (see details).}
   \item{frag.length}{Average length of the ChIP fragments in each sample
-    provided. Reads are extended to this length from their 3' ends. If not specified, cross correlation will be used to
+    provided. Reads are extended to this length from their 3' ends. If \code{NULL}, cross correlation will be used to
     estimate the fragment length of each sample (see details).}
   \item{minimum.count}{The count threshold used for filtering out
     windows with sparse counts. Any genomic window with counts less than
   this value accross all samples will be removed.}
 }
-\value{list containing:
-  \item{counts}{dataframe with rows corresponding to genomic windows and
+\value{A list containing:
+  \item{counts}{data.frame with rows corresponding to genomic windows and
        columns for the chromosomes, start and end locations, as well as
        a column for the counts of each sample.}
      \item{bin.size}{the bin.size used to create the counts dataframe.}

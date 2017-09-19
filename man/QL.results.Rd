@@ -1,7 +1,7 @@
 % File src/library/QuasiSeq/man/QL.results.Rd
      \name{QL.results}
      \alias{QL.results}
-     \title{Obtain p-values and q-values using results from \code{QL.fit}}
+     \title{Obtain P-values and Q-values using Results from \code{QL.fit}}
      \description{
        Obtain significance results, at the candidate region level, for
      quasi-likelihood model fits to ChIP-seq data partitioned into
@@ -23,18 +23,17 @@ QL.results(fit, Dispersion="Deviance", one.sided=TRUE,
    \item{padj}{logical. If TRUE, Benjamini & Hochberg's adjustment for multiple comparisons is applied.}
 	}
 
-\value{list containing:
-	\item{"P.values"}{list of matrices providing p-values for the QL, QLShrink and QLSpline methods, respectively.  The i^th column of each element of \code{pvals} corresponds to the hypothesis test assigned in the i^th row of \code{test.mat}.}
-	\item{"Q.values"}{list of matrices providing q-values for the QL, QLShrink and QLSpline methods, respectively.  The i^th column of each element of \code{qvals} corresponds to the hypothesis test assigned in the i^th row of \code{test.mat}.
- Q-values are computed using the methods of Nettleton et al. (2006) JABES 11, 337-356.}
-	\item{"F.stat"}{list of matrices providing F-statistics for the
+\value{A list containing:
+	\item{P.values}{list of matrices providing p-values for the QL, QLShrink and QLSpline methods, respectively.  The i^th column of each element of \code{pvals} corresponds to the hypothesis test assigned in the i^th row of \code{test.mat}.}
+	\item{Q.values}{list of matrices providing q-values for the QL, QLShrink and QLSpline methods, respectively.  The i^th column of each element of \code{qvals} corresponds to the hypothesis test assigned in the i^th row of \code{test.mat}.}
+	\item{F.stat}{list of matrices providing F-statistics for the
 	QL, QLShrink and QLSpline methods, respectively.  The i^th
 	column of each element of \code{F.stat} corresponds to the
 	hypothesis test assigned in the i^th row of \code{test.mat}.}
-	\item{"d0"}{ vector containing estimated additional denominator degrees of freedom  gained from shrinking dispersion estimates in the QLShrink and QLSpline procedures, respectively.}
+	\item{d0}{ vector containing estimated additional denominator degrees of freedom  gained from shrinking dispersion estimates in the QLShrink and QLSpline procedures, respectively.}
 }
 
-\author{Steve Lund \email{lundsp@gmail.com}, Emily Goren \email{emily.goren@gmail.com}}
+\author{Emily Goren (\email{emily.goren@gmail.com}) based on modifications of code by Steve Lund.}
 
 \references{
 Benjamini and Hochberg (1995)
@@ -65,7 +64,7 @@ beta1 <- rep(0, regions); beta1[peak.idx] <- VGAM::rpareto(n.peaks, shape = 5, s
 mu.ChIP <- exp(beta0 + beta1)
 mu.input <- exp(beta0)
 # Negative binomial dispersion parameter
-phi <- geoR::rinvchisq(regions, df = 5)
+phi <- 1/rchisq(regions, df = 5)
 # Draw read counts using a negative binomial distribution
 C <- lapply(1:reps, function(r) MASS::rnegbin(regions,
                                               mu = mu.ChIP,
