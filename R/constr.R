@@ -2,7 +2,7 @@
 # This code was origionally writen by Daniel Gerhard.
 #################################################################################
 orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL, mustart = NULL, offset = rep(0, nobs), family = gaussian(), control = list(), intercept = TRUE, constr, rhs, nec){
-
+  
   ###################
   orr <- function(x, y, constr, rhs, nec){
     unc <- lm.fit(x, y)
@@ -25,7 +25,7 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
     }
     return(list(coefficients=orBeta))
   }
-
+  
   ###############
   control <- do.call("glm.control", control)
   x <- as.matrix(x)
@@ -80,7 +80,7 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
     if (!(validmu(mu) && valideta(eta))) stop("cannot find valid starting values: please specify some", call. = FALSE)
     devold <- sum(dev.resids(y, mu, weights))
     boundary <- conv <- FALSE
-
+    
     #################################################
     for (iter in 1L:control$maxit) {
       good <- weights > 0
@@ -151,7 +151,7 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
         coef <- coefold <- start
       }
     }
-
+    
     ##############################
     if (!conv) warning("orglm.fit: algorithm did not converge", call. = FALSE)
     if (boundary) warning("orglm.fit: algorithm stopped at boundary value", call. = FALSE)
