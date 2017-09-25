@@ -86,14 +86,12 @@
 #' @examples 
 #' \dontrun{
 #' # Fit a quasi-negative binomial model using all default settings.
-#' # Example uses dm6 data included in package (may take some time to fit model).
-#' # dir <- '/Users/username/mybamfolder/'
-#' # Use sorted bam files provided in package.
-#' rootdir <- system.file(package = "BinQuasi")
-#' dir <- paste0(rootdir, "/extdata/")
+#' dir <- '/Users/username/mybamfolder/'
 #' results <- BQ(dir,
 #'               ChIP.files = c('chip1.bam', 'chip2.bam'),
 #'               control.files = c('inp1.bam', 'inp2.bam'))
+#' # Look at called peaks.
+#' head(results$peaks)
 #' }
 #' 
 #' @return A list containing: 
