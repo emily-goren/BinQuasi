@@ -101,23 +101,13 @@ methods of Goren, Liu, Wang and Wang (to be submitted).
 }
 \examples{
 \dontrun{
-<<<<<<< HEAD
-# Fit a quasi-negative binomial model to 4 samples using all default settings.
-# dir <- '/Users/username/mybamfolder/'
-rootdir <- system.file(package = "BinQuasi")
-dir <- paste0(rootdir, "/inst/extdata/")
-results <- BQ(dir,
-              ChIP.files = c('chip1.bam', 'chip2.bam'),
-              control.files = c('inp1.bam', 'inp2.bam'))
-=======
 # Fit a quasi-negative binomial model using all default settings.
 dir <- '/Users/username/mybamfolder/'
 results <- BQ(dir,
               ChIP.files = c('chip1.bam', 'chip2.bam'),
               control.files = c('inp1.bam', 'inp2.bam'))
-# Called peak output.
+# Look at called peaks.
 head(results$peaks)
->>>>>>> master
 }
 
 }
