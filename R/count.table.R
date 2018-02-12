@@ -92,6 +92,9 @@ bin.width <- function(dir, ChIP.files, frag.length) {
     t <- x[[1]]$targets
     return(t[which.max(t)])
   })
+  
+  # Extract chromosomes from each sample.
+  chrs <- lapply(samHeader, function(x) x[[1]]$targets)
   chr.ranges <- lapply(chrs, function(x)  GRanges(seqnames = names(x), ranges = IRanges(1, x)))
   param <- lapply(chr.ranges, function(x) ScanBamParam(which=x))
   rds <- lapply(1:n, function(i) { # Apply over samples.
@@ -104,11 +107,21 @@ bin.width <- function(dir, ChIP.files, frag.length) {
   if (min.bin < 50)
     min.bin <- 50
   candidate.bins <- seq(min.bin, 1000, by = 10)
-  est <- lapply(rds, function(x) {
-    w <- lapply(candidate.bins, function(d) cost.func(x, d))
-    best <- candidate.bins[which.min(unlist(w))]
-    return(best) })
-  est <- min(unlist(est))
+  chr.all <- unique(unlist(lapply(chrs, names)))
+  est.all <- lapply(chr.all, function(thischr) {
+    lapply(rds, function(x) {
+      thisxchr <- seqnames(x)
+      if (thischr %in% thisxchr) {
+          w <- lapply(candidate.bins, function(d) cost.func(x[thisxchr == thischr], d))
+          best <- candidate.bins[which.min(unlist(w))]
+      } else {
+        best <- Inf
+      }
+      return(best) })
+  })
+  est.all <- sapply(est.all, function(e) min(unlist(e)))
+  names(est.all) <- chr.all
+  est <- min(est.all)
   return(est)
 }
 
