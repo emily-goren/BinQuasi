@@ -7,6 +7,7 @@
 #' @param type Must be one of \code{raw}, \code{bias}, or \code{corrected}.
 #' @param ... Additional arguments.
 #' 
+#' @rdname coef.glm
 #' @export
 #'
 coef.glm=function(object, type=c('raw','bias','corrected'), ...)

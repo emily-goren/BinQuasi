@@ -46,7 +46,12 @@ fbrNBglm.fit=function(x, y, weights = rep(1, length(y)), offset = rep(0, length(
       control$start = start
     }
   }
-  xxuniq=unique(xx)
+  
+  if (is.matrix(xx)) {
+    xxuniq=unique(xx)
+  } else {
+    xxuniq=uniquematrix(xx)
+  }
   
   infoParmsj=control$infoParms$j
   infoParmsk=control$infoParms$k
