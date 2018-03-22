@@ -1,4 +1,12 @@
 #'
+#' @name BinQuasi
+#'
+#' @title Analyzing Replicated ChIP Sequencing Data Using Quasi-Likelihood
+#' 
+#' @description Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models.
+#' 
+#' @details See Goren, Liu, Wang and Wang (2018).
+#' 
 #' @import edgeR
 #' @import quadprog
 #' @import GenomicRanges
@@ -8,6 +16,7 @@
 #' @import csaw
 #' @import Rsamtools
 #'
+#' 
 #' @importFrom mgcv negbin
 #' @importFrom pracma broyden
 #' @importFrom grDevices dev.new
@@ -17,7 +26,3 @@
 #' @useDynLib BinQuasi, .registration=TRUE, .fixes="C_"
 #' 
 NULL
-
-# @S3method coef, glm
-# @S3method unique, matrix
-# @S3method duplicated, matrix

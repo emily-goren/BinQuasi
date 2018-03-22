@@ -1,8 +1,14 @@
 #'
-#'@export
+#' Extract model coefficients
+#' 
+#' @description Extract model coefficients.
+#' 
+#' @param object The fitted model.
+#' @param type Must be one of \code{raw}, \code{bias}, or \code{corrected}.
+#' @param ... Additional arguments.
+#' 
+#' @export
 #'
-#'
-
 coef.glm=function(object, type=c('raw','bias','corrected'), ...)
 {
   type=match.arg(type)

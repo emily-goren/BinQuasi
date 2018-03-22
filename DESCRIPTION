@@ -1,6 +1,6 @@
 Package: BinQuasi
-Version: 0.1-2
-Date: 2017-09-25
+Version: 0.1-3
+Date: 2018-03-22
 Title: Analyzing Replicated ChIP Sequencing Data Using Quasi-Likelihood
 Authors@R: c(
   person("Goren", "Emily", role=c("aut", "cre"), email="emily.goren@gmail.com"),
@@ -12,7 +12,7 @@ Authors@R: c(
   )
 Imports: edgeR, mgcv, pracma, quadprog, Rsamtools, GenomicAlignments, GenomicRanges, IRanges, csaw, SummarizedExperiment
 Suggests: nleqslv
-Description: Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models (Goren, Liu, Wang and Wang; to be submitted).
+Description: Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models (Goren, Liu, Wang and Wang 2018).
 License: GPL (>= 2)
 NeedsCompilation: yes
 Maintainer: Emily Goren <emily.goren@gmail.com>
