@@ -15,7 +15,6 @@
 #' @import SummarizedExperiment
 #' @import csaw
 #' @import Rsamtools
-#'
 #' 
 #' @importFrom mgcv negbin
 #' @importFrom pracma broyden

@@ -34,7 +34,7 @@ fragment.length <- function(dir, ChIP.files, control.files) {
   bamFiles <- paste0(dir, c(ChIP.files, control.files))
   n <- length(bamFiles)
   bfList <- BamFileList(bamFiles)
-  samHeader <- lapply(bfList, function(x) scanBamHeader(path(x)))
+  samHeader <- lapply(bfList, function(x) scanBamHeader(x$path))
   
   # Extract chromosomes.
   chromosomes <- lapply(samHeader, function(x) x[[1]]$targets)
@@ -47,7 +47,7 @@ fragment.length <- function(dir, ChIP.files, control.files) {
   # Estimate fragment length for each chromosome within each replicate.
   fragLen <- lapply(1:n, function(i) { # Apply over replicates.
     out <- lapply(param, function(x) { # Apply over chromosomes.
-      rds <- readGAlignments(path(bfList[[i]]), param = x) # Convert bam to GAlignments.
+      rds <- readGAlignments(bfList[[i]]$path, param = x) # Convert bam to GAlignments.
       rds <- unique(GRanges(rds)) # Dedupe and convert to GRanges.
       est <- xcorr(rds)
       return(est)
@@ -85,7 +85,7 @@ bin.width <- function(dir, ChIP.files, frag.length) {
   bamFiles <- paste0(dir, ChIP.files)
   n <- length(bamFiles)
   bfList <- BamFileList(bamFiles)
-  samHeader <- lapply(bfList, function(x) scanBamHeader(path(x)))
+  samHeader <- lapply(bfList, function(x) scanBamHeader(x$path))
   
   # Extract largest chromosome from each sample.
   chrs <- lapply(samHeader, function(x) {
@@ -98,7 +98,7 @@ bin.width <- function(dir, ChIP.files, frag.length) {
   chr.ranges <- lapply(chrs, function(x)  GRanges(seqnames = names(x), ranges = IRanges(1, x)))
   param <- lapply(chr.ranges, function(x) ScanBamParam(which=x))
   rds <- lapply(1:n, function(i) { # Apply over samples.
-    rds.ga <- readGAlignments(path(bfList[[i]]), param = param[[i]]) # Convert bam to GAlignments.
+    rds.ga <- readGAlignments(bfList[[i]]$path, param = param[[i]]) # Convert bam to GAlignments.
     rds.gr <- unique(GRanges(rds.ga)) # Dedupe and convert to GRanges.
     rds.out <- resize(rds.gr, frag.length[i]) # Extend reads to fragment length.
     return(rds.out)
