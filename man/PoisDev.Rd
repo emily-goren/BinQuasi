@@ -72,7 +72,7 @@ then estimated by a plug-in estimate [eqn. (15.4) of McCullagh and Nelder,
 procedure. The fitted response values are then compared with or without such
 a bias term. If the ratio of fitted response values are larger than
 \code{bias.fold.tolerance} for any observation and the unconstrained
- estimate equals the consrained estimate, then the bias-reduction (not
+ estimate equals the constrained estimate, then the bias-reduction (not
 bias-correction) procedure according to Firth (1993) and Kosmidis & Firth
 (2009) is applied to such rows of \code{counts}, by adjusting the score
 equation with a term based on the observed information. Such bias-reduced

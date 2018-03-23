@@ -1,15 +1,26 @@
-# BinQuasi
+---
+title: "BinQuasi"
+author: "Emily Goren"
+date: "March 22, 2018"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction
 
 This package provides code to call peaks in ChIP-seq data with biological replicates using the algorithm of Goren, Liu, Wang and Wang (2018).
 
-## Installation
-
-The BinQuasi package for R can be installed from Github using devtools following the code below.
-
-```R
-devtools::install_github("emilygoren/BinQuasi", args = "--preclean", build_vignettes = TRUE)
-library(BinQuasi)
-```
 
 ## Data Preprocessing
 
@@ -21,7 +32,8 @@ BinQuasi accepts sorted and indexed BAM files (note that it does not perform gen
 Once installed, BinQuasi calls peaks with the function "BQ()." Below is code to run BinQuasi with all default settings, where the sorted and indexed BAM files are stored in the directory specified by "fpath" under the file names "C1.bam", "
 C2.bam" and "I1.bam", "I2.bam" for ChIP and input files, respectively. 
 
-```R
+```{r}
+library(BinQuasi)
 fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
 results <- BQ(fpath, 
               ChIP.files = c('C1.bam', 'C2.bam'), 
@@ -30,6 +42,6 @@ head(results$peaks)
 ```
 
 See the package documentation for information on changing the default settings.
-```R
+```{r}
 ?BQ
 ```

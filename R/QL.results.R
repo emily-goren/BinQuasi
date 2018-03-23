@@ -4,7 +4,7 @@
 #'
 #'@description Obtain significance results for quasi-likelihood models fit to
 #'  ChIP-seq data partitioned into counts using the methods detailed in Goren,
-#'  Liu, Wang and Wang (to be submitted).
+#'  Liu, Wang and Wang (2018).
 #'  
 #'@details Obtain significance results from an object fitted using \code{\link{QL.fit}}.
 #'Used within the main peak calling function, \code{\link{BQ}}.

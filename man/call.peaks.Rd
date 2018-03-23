@@ -28,7 +28,7 @@ supplied p-values.}
 \item{alpha}{The desired significance threshold in (0, 0.5).}
 }
 \value{
-The called peaks as a data.frame with variables: 
+The called peaks as a dataframe with variables: 
   \item{start}{Genomic start locations of the called peaks.} 
   \item{end}{Genomic end locations of the called peaks.} 
   \item{width}{Width of the called peaks.} 
@@ -50,7 +50,7 @@ After correcting for multiple testing using the adjustment specified
   Simes' procedure is used to combine the window-level p-values in each 
   candidate region into a region-level p-value. The Benjamini-Hochberg 
   procedure is applied to the resulting candidate regions and those that 
-  exceed the signficance threshold \code{alpha} are returned as peaks.
+  exceed the significance threshold \code{alpha} are returned as peaks.
 }
 \examples{
 # Example for a single chromosome.

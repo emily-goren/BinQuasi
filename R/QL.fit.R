@@ -4,7 +4,7 @@
 #' 
 #' @description Fit constrained quasi-likelihood models to ChIP-seq data 
 #'   partitioned into a count matrix using the methods detailed in Goren, Liu, 
-#'   Wang and Wang (to be submitted).
+#'   Wang and Wang (2018).
 #'   
 #' @details A wrapper for \code{\link{PoisDev}} or \code{\link{NBDev}}, 
 #'   depending on whether quasi-Poisson or quasi-negative binomial models are 
@@ -31,7 +31,7 @@
 #' @param Model Must be one of \code{"Poisson"} or \code{"NegBin"}, specifying
 #'   use of a quasi-Poisson or quasi-negative binomial model, respectively.
 #' @param print.progress logical. If \code{TRUE}, updates are provided regarding
-#'   whick window (row number) is being analyzed.  Updates occur frequently to
+#'   which window (row number) is being analyzed.  Updates occur frequently to
 #'   start then eventually occur every 5000 windows.
 #' @param NBdisp Used only when \code{Model="NegBin"}. Must be one of \code{"trend"},
 #'   \code{"common"} or a vector of non-negative real numbers with length equal to

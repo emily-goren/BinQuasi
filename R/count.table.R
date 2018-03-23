@@ -165,14 +165,14 @@ bin.width <- function(dir, ChIP.files, frag.length) {
 #'   the genome.
 #'   
 #'   The fragment length (if not provided) is estimated using the 
-#'   cross-correlation method of Ramachandran et al (2013). A fregment length
-#'   is estimated for each sample, after removing dupliate reads, by taking the
+#'   cross-correlation method of Ramachandran et al (2013). A fragment length
+#'   is estimated for each sample, after removing duplicate reads, by taking the
 #'   average over all chromosomes in the sample. Estimation is performed at 5 bp
 #'   resolution and restricted to a minimum fragment length of 50 bp and maximum
 #'   of 600 bp.
 #'   
 #'   The bin size (if not provided) is selected using a procedure by Shimazaki
-#'   and Shinomoto (2007) based on minimzing the mean-integrated squared error
+#'   and Shinomoto (2007) based on minimizing the mean-integrated squared error
 #'   for a time-dependent Poisson point process. This procedure is applied to
 #'   each ChIP sample (at 5 bp resolution, restricted to a minimum of 50 bp and
 #'   maximum of 1000 bp), and the minimum across all ChIP samples is returned as

@@ -44,7 +44,7 @@ which window (row number) is being analyzed. Updates occur frequently to
 start then eventually occur every 5000 windows.}
 
 \item{method}{Must be one of \code{"QL"}, \code{"QLShrink"}, or \code{"QLSpline"}, 
-specifing which method of Lund, Nettleton, McCarthy and Smyth (2012) should be used to 
+specifying which method of Lund, Nettleton, McCarthy and Smyth (2012) should be used to 
   compute p-values.}
 
 \item{p.window.adjust}{FDR control method applied to the windows. Must be 
@@ -92,21 +92,17 @@ A list containing:
   counts dataframe. Windows with counts below this value were removed.}
 }
 \description{
-Use the BinQuasi algorithm of Goren, Liu, Wang and Wang (to be
-submitted) to call peaks using ChIP-seq data with biological replicates.
+Use the BinQuasi algorithm of Goren, Liu, Wang and Wang to call peaks using ChIP-seq data with biological replicates.
 }
 \details{
 This function calls peaks in replicated ChIP-seq data using the 
-methods of Goren, Liu, Wang and Wang (to be submitted).
+methods of Goren, Liu, Wang and Wang (2018).
 }
 \examples{
 \dontrun{
 # Fit a quasi-negative binomial model using all default settings.
-dir <- '/Users/username/mybamfolder/'
-results <- BQ(dir,
-              ChIP.files = c('chip1.bam', 'chip2.bam'),
-              control.files = c('inp1.bam', 'inp2.bam'))
-# Look at called peaks.
+fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
+results <- BQ(fpath, ChIP.files = c('C1.bam', 'C2.bam'), control.files = c('I1.bam', 'I2.bam'))
 head(results$peaks)
 }
 

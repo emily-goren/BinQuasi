@@ -11,7 +11,9 @@ Authors@R: c(
   person("R Core Team", role="aut", comment="The author of stats::glm.fit, which was modified slightly leading to glm.fit3 in this package.")
   )
 Imports: edgeR, mgcv, pracma, quadprog, Rsamtools, GenomicAlignments, GenomicRanges, IRanges, csaw, SummarizedExperiment
-Suggests: nleqslv
+Suggests: nleqslv,
+    knitr,
+    rmarkdown
 Description: Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models (Goren, Liu, Wang and Wang 2018).
 License: GPL (>= 2)
 NeedsCompilation: yes
@@ -23,3 +25,4 @@ Author: Emily Goren [aut, cre],
   Daniel Gerhard [aut] (The author of mcprofile::orglm.fit, which was modified slightly and used under the same name in this package.),
   R Core Team [aut] (The author of stats::glm.fit, which was modified slightly leading to glm.fit3 in this package.)
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr

@@ -1,8 +1,7 @@
 #' 
 #' Call peaks in replicated ChIP-seq data using BinQuasi
 #' 
-#' @description Use the BinQuasi algorithm of Goren, Liu, Wang and Wang (to be
-#' submitted) to call peaks using ChIP-seq data with biological replicates.
+#' @description Use the BinQuasi algorithm of Goren, Liu, Wang and Wang to call peaks using ChIP-seq data with biological replicates.
 #' 
 #' @param dir Directory where the sorted bam files (and their corresponding bam 
 #' indices) are saved.
@@ -28,7 +27,7 @@
 #'   which window (row number) is being analyzed. Updates occur frequently to 
 #'   start then eventually occur every 5000 windows.
 #' @param method Must be one of \code{"QL"}, \code{"QLShrink"}, or \code{"QLSpline"}, 
-#' specifing which method of Lund, Nettleton, McCarthy and Smyth (2012) should be used to 
+#' specifying which method of Lund, Nettleton, McCarthy and Smyth (2012) should be used to 
 #'   compute p-values.
 #' @param p.window.adjust FDR control method applied to the windows. Must be 
 #' either \code{"BH"} or \code{"BY"} to specify the procedure of Benjamini-Hochberg 
@@ -59,7 +58,7 @@
 #'   See \code{\link{NBDev}} or \code{\link{PoisDev}} for details.
 #'   
 #' @details This function calls peaks in replicated ChIP-seq data using the 
-#' methods of Goren, Liu, Wang and Wang (to be submitted).
+#' methods of Goren, Liu, Wang and Wang (2018).
 #' 
 #' @references Shimazaki and Shinomoto (2007)  "A method for selecting the bin 
 #' size of a time histogram" \emph{Neural computation}, \bold{19}(6), 1503-27.
@@ -86,11 +85,8 @@
 #' @examples 
 #' \dontrun{
 #' # Fit a quasi-negative binomial model using all default settings.
-#' dir <- '/Users/username/mybamfolder/'
-#' results <- BQ(dir,
-#'               ChIP.files = c('chip1.bam', 'chip2.bam'),
-#'               control.files = c('inp1.bam', 'inp2.bam'))
-#' # Look at called peaks.
+#' fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
+#' results <- BQ(fpath, ChIP.files = c('C1.bam', 'C2.bam'), control.files = c('I1.bam', 'I2.bam'))
 #' head(results$peaks)
 #' }
 #' 
@@ -175,9 +171,9 @@ BQ <- function(dir, ChIP.files, control.files, alpha=0.05,
   }
   called <- call.peaks(window.pvals = ps,
                        method = p.window.adjust,
-                       start = counts[,2],
-                       end = counts[,3],
-                       chromosomes = counts[,1],
+                       start = counts$start,
+                       end = counts$end,
+                       chromosomes = counts$chr,
                        alpha = alpha)
   out <- list(peaks = called,
               bin.size = cts$bin.size,

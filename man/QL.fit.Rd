@@ -35,7 +35,7 @@ If \code{NULL}, the later offset is used.}
 use of a quasi-Poisson or quasi-negative binomial model, respectively.}
 
 \item{print.progress}{logical. If \code{TRUE}, updates are provided regarding
-whick window (row number) is being analyzed.  Updates occur frequently to
+which window (row number) is being analyzed.  Updates occur frequently to
 start then eventually occur every 5000 windows.}
 
 \item{NBdisp}{Used only when \code{Model="NegBin"}. Must be one of \code{"trend"},
@@ -107,7 +107,7 @@ A list containing:
 \description{
 Fit constrained quasi-likelihood models to ChIP-seq data 
   partitioned into a count matrix using the methods detailed in Goren, Liu, 
-  Wang and Wang (to be submitted).
+  Wang and Wang (2018).
 }
 \details{
 A wrapper for \code{\link{PoisDev}} or \code{\link{NBDev}}, 

@@ -4,12 +4,12 @@ get.simes <- function(bins, regions, pvals) {
   ## Supply bins, regions as GRanges objects
   hits <- findOverlaps(bins, regions)
   nbins <- length(regions)
-  out <- lapply(1:nbins, function(j) {
+  out <- sapply(1:nbins, function(j) {
     idx <- hits@from[hits@to == j]
     p.simes <- simes(pvals[idx])
     return(p.simes)
   })
-  return(unlist(out))
+  return(out)
 }
 
 #' 
@@ -25,7 +25,7 @@ get.simes <- function(bins, regions, pvals) {
 #'   Simes' procedure is used to combine the window-level p-values in each 
 #'   candidate region into a region-level p-value. The Benjamini-Hochberg 
 #'   procedure is applied to the resulting candidate regions and those that 
-#'   exceed the signficance threshold \code{alpha} are returned as peaks.
+#'   exceed the significance threshold \code{alpha} are returned as peaks.
 #'   
 #' @param window.pvals Vector of p-values, with each element corresponding to a 
 #'   window of a genomic partition. Typically obtained from the 
@@ -41,7 +41,7 @@ get.simes <- function(bins, regions, pvals) {
 #'   supplied p-values.
 #' @param alpha The desired significance threshold in (0, 0.5).
 #'   
-#' @return The called peaks as a data.frame with variables: 
+#' @return The called peaks as a dataframe with variables: 
 #'   \item{start}{Genomic start locations of the called peaks.} 
 #'   \item{end}{Genomic end locations of the called peaks.} 
 #'   \item{width}{Width of the called peaks.} 
@@ -94,6 +94,6 @@ call.peaks <- function(window.pvals, method=c("BY", "BH", "none"), start, end, c
                     chr = as.character(seqnames(regions)),
                     P.val = get.simes(bins, regions, window.pvals))
   out$Q.val <- p.adjust(out$P.val, method = 'BH')
-  called <- out$Q.val < alpha
+  called <- (out$Q.val < alpha)
   return(out[called, ])
 }
