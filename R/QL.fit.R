@@ -3,8 +3,7 @@
 #' count matrix
 #' 
 #' @description Fit constrained quasi-likelihood models to ChIP-seq data 
-#'   partitioned into a count matrix using the methods detailed in Goren, Liu, 
-#'   Wang and Wang (2018).
+#'   partitioned into a count matrix.
 #'   
 #' @details A wrapper for \code{\link{PoisDev}} or \code{\link{NBDev}}, 
 #'   depending on whether quasi-Poisson or quasi-negative binomial models are 

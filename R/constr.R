@@ -1,5 +1,6 @@
 #################################################################################
 # This code was origionally writen by Daniel Gerhard.
+# Modified by EMG
 #################################################################################
 orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL, mustart = NULL, offset = rep(0, nobs), family = gaussian(), control = list(), intercept = TRUE, constr, rhs, nec){
   

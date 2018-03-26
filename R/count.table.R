@@ -3,17 +3,17 @@
 xcorr <- function(gdata) { # gdata is GRanges object for a single chromosome.
   chr <- gdata@seqnames@values
   B <- gdata@seqinfo@seqlengths[gdata@seqinfo@seqnames == chr]
-  mus <- table(strand(gdata)) / B
-  mu.f <-mus[1]
-  mu.g <- mus[2]
+  mus <- table(gdata@strand) / B
+  mu.f <-mus['+']
+  mu.g <- mus['-']
   V.f <- mu.f * (1 - mu.f)
   V.g <- mu.g * (1 - mu.g)
-  pos.strand <- gdata[strand(gdata) == '+']
-  neg.strand <- gdata[strand(gdata) == '-']
-  f <- start(pos.strand)
-  g <- end(neg.strand)
+  pos.strand <- gdata[gdata@strand == '+']
+  neg.strand <- gdata[gdata@strand == '-']
+  f <- pos.strand@ranges@start
+  g <- neg.strand@ranges@start + neg.strand@ranges@width - 1
   ds <- seq(50, 600, by = 5)
-  rd <- lapply(ds, function(d) {
+  rd <- sapply(ds, function(d) {
     f.d <- f[f <= (B-d)]
     g.d <- g[g >= (1+d)]
     g.d <- g.d - d
@@ -22,7 +22,7 @@ xcorr <- function(gdata) { # gdata is GRanges object for a single chromosome.
     den <- sqrt(V.f * V.g)
     return(num / den)
   })
-  d <- ds[which.max(unlist(rd))]
+  d <- ds[which.max(rd)]
   return(d)
 }
 
@@ -45,19 +45,18 @@ fragment.length <- function(dir, ChIP.files, control.files) {
   param <- lapply(chr.ranges, function(x) ScanBamParam(which=x))
   
   # Estimate fragment length for each chromosome within each replicate.
-  fragLen <- lapply(1:n, function(i) { # Apply over replicates.
-    out <- lapply(param, function(x) { # Apply over chromosomes.
+  fragLen <- sapply(1:n, function(i) { # Apply over replicates.
+    ests <- sapply(param, function(x) { # Apply over chromosomes.
       rds <- readGAlignments(bfList[[i]]$path, param = x) # Convert bam to GAlignments.
       rds <- unique(GRanges(rds)) # Dedupe and convert to GRanges.
       est <- xcorr(rds)
       return(est)
     })
-    ests <- unlist(out)
     frag <- mean(ests)
     return(frag)
   })
   
-  fl <- round(unlist(fragLen), 0)
+  fl <- round(fragLen, 0)
   
   return(fl)
 }
@@ -107,7 +106,7 @@ bin.width <- function(dir, ChIP.files, frag.length) {
   if (min.bin < 50)
     min.bin <- 50
   candidate.bins <- seq(min.bin, 1000, by = 10)
-  chr.all <- unique(unlist(lapply(chrs, names)))
+  chr.all <- unique(sapply(chrs, names))
   est.all <- lapply(chr.all, function(thischr) {
     lapply(rds, function(x) {
       thisxchr <- seqnames(x)
@@ -255,9 +254,10 @@ count.table <- function(dir, ChIP.files, control.files, bin.size = NULL, frag.le
   cts <- assay(cts.all)
   colnames(cts) <- c(ChIP.files, control.files)
   
-  start <- rowRanges(cts.all)@ranges@start
-  end <- start + rowRanges(cts.all)@ranges@width - 1
-  chr <- as.character(seqnames(rowRanges(cts.all)))
+  cts.rr <- rowRanges(cts.all)
+  start <- cts.rr@ranges@start
+  end <- start + cts.rr@ranges@width - 1
+  chr <- as.character(cts.rr@seqnames)
   
   # Counts file.
   cts.out <- data.frame(chr, start, end, cts)

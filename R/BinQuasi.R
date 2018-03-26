@@ -3,9 +3,9 @@
 #'
 #' @title Analyzing Replicated ChIP Sequencing Data Using Quasi-Likelihood
 #' 
-#' @description Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models.
+#' @description Identify peaks in ChIP-seq data with biological replicates.
 #' 
-#' @details See Goren, Liu, Wang and Wang (2018).
+#' @details Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models.
 #' 
 #' @import edgeR
 #' @import quadprog
@@ -14,6 +14,7 @@
 #' @import GenomicAlignments
 #' @import SummarizedExperiment
 #' @import csaw
+#' @import BiocGenerics
 #' @import Rsamtools
 #' 
 #' @importFrom mgcv negbin

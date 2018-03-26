@@ -1,9 +1,9 @@
 simes <- function(p) min(length(p) * p / rank(p))
 
-get.simes <- function(bins, regions, pvals) { 
+get.simes <- function(bins, regs, pvals) { 
   ## Supply bins, regions as GRanges objects
-  hits <- findOverlaps(bins, regions)
-  nbins <- length(regions)
+  hits <- findOverlaps(bins, regs)
+  nbins <- length(regs)
   out <- sapply(1:nbins, function(j) {
     idx <- hits@from[hits@to == j]
     p.simes <- simes(pvals[idx])
@@ -84,16 +84,21 @@ call.peaks <- function(window.pvals, method=c("BY", "BH", "none"), start, end, c
     stop("The length of the p-value vector, start locations, end locations, and chromosomes must match.")
   q <- p.adjust(window.pvals, method = method)
   sig <- q < alpha # Which windows are significant?
-  if (sum(sig) == 0)
-    stop("No windows are significant at the specified alpha. No peaks called.")
-  bins <- GRanges(chromosomes, IRanges(start = start, end = end))
-  regions <- reduce(GRanges(chromosomes[sig], IRanges(start = start[sig], end = end[sig]))) # candidate regions
-  out <- data.frame(start = start(regions),
-                    end = end(regions),
-                    width = width(regions),
-                    chr = as.character(seqnames(regions)),
-                    P.val = get.simes(bins, regions, window.pvals))
-  out$Q.val <- p.adjust(out$P.val, method = 'BH')
-  called <- (out$Q.val < alpha)
-  return(out[called, ])
+  if (sum(sig) == 0) {
+    message("No windows are significant at the specified alpha using this binwidth and count filtering. No peaks called.")
+    out <- data.frame(start = NA, end =  NA, width = NA, chr = NA, P.val = NA, Q.val = NA)
+    called <- FALSE
+  } else {
+    bins <- GRanges(chromosomes, IRanges(start = start, end = end))
+    regs <- reduce(GRanges(chromosomes[sig], IRanges(start = start[sig], end = end[sig]))) # candidate regions
+    out <- data.frame(start = regs@ranges@start,
+                      end = regs@ranges@start + regs@ranges@width - 1,
+                      width = regs@ranges@width,
+                      chr = as.character(regs@seqnames),
+                      P.val = get.simes(bins, regs, window.pvals))
+    out$Q.val <- p.adjust(out$P.val, method = 'BH')
+    called <- (out$Q.val < alpha)
+  }
+  ans <- out[called,]
+  return(ans)
 }

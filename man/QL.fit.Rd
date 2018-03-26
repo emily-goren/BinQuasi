@@ -106,8 +106,7 @@ A list containing:
 }
 \description{
 Fit constrained quasi-likelihood models to ChIP-seq data 
-  partitioned into a count matrix using the methods detailed in Goren, Liu, 
-  Wang and Wang (2018).
+  partitioned into a count matrix.
 }
 \details{
 A wrapper for \code{\link{PoisDev}} or \code{\link{NBDev}}, 

@@ -29,8 +29,7 @@ Shimazaki and Shinomoto (2007).}
 
 \item{frag.length}{Average length of the ChIP fragments in each sample 
 provided. Reads are extended to this length in the 5'-to-3' direction. If 
-\code{NULL}, cross correlation will be used to estimate the fragment 
-lengths following Ramachandran, Palidwor, Porter, and Perkins (2013).}
+\code{NULL}, cross correlation will be used to estimate the fragment}
 
 \item{minimum.count}{The count threshold used for filtering out windows with 
 sparse counts. Any genomic window with a total count, across all samples, 
@@ -92,11 +91,10 @@ A list containing:
   counts dataframe. Windows with counts below this value were removed.}
 }
 \description{
-Use the BinQuasi algorithm of Goren, Liu, Wang and Wang to call peaks using ChIP-seq data with biological replicates.
+Use the BinQuasi algorithm to call peaks using ChIP-seq data with biological replicates.
 }
 \details{
-This function calls peaks in replicated ChIP-seq data using the 
-methods of Goren, Liu, Wang and Wang (2018).
+This function calls peaks in replicated ChIP-seq data.
 }
 \examples{
 \dontrun{

@@ -4,8 +4,8 @@
 \alias{BinQuasi}
 \title{Analyzing Replicated ChIP Sequencing Data Using Quasi-Likelihood}
 \description{
-Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models.
+Identify peaks in ChIP-seq data with biological replicates.
 }
 \details{
-See Goren, Liu, Wang and Wang (2018).
+Identify peaks in ChIP-seq data with biological replicates using a one-sided quasi-likelihood ratio test in quasi-Poisson or quasi-negative binomial models.
 }

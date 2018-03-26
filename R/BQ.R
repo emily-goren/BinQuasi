@@ -1,7 +1,7 @@
 #' 
 #' Call peaks in replicated ChIP-seq data using BinQuasi
 #' 
-#' @description Use the BinQuasi algorithm of Goren, Liu, Wang and Wang to call peaks using ChIP-seq data with biological replicates.
+#' @description Use the BinQuasi algorithm to call peaks using ChIP-seq data with biological replicates.
 #' 
 #' @param dir Directory where the sorted bam files (and their corresponding bam 
 #' indices) are saved.
@@ -17,7 +17,6 @@
 #' @param frag.length Average length of the ChIP fragments in each sample 
 #'   provided. Reads are extended to this length in the 5'-to-3' direction. If 
 #'   \code{NULL}, cross correlation will be used to estimate the fragment 
-#'   lengths following Ramachandran, Palidwor, Porter, and Perkins (2013).
 #' @param minimum.count The count threshold used for filtering out windows with 
 #'   sparse counts. Any genomic window with a total count, across all samples, 
 #'   less than this value will be removed.
@@ -57,8 +56,7 @@
 #'   setting \code{bias.fold.tolerance=1} will always perform bias reduction. 
 #'   See \code{\link{NBDev}} or \code{\link{PoisDev}} for details.
 #'   
-#' @details This function calls peaks in replicated ChIP-seq data using the 
-#' methods of Goren, Liu, Wang and Wang (2018).
+#' @details This function calls peaks in replicated ChIP-seq data.
 #' 
 #' @references Shimazaki and Shinomoto (2007)  "A method for selecting the bin 
 #' size of a time histogram" \emph{Neural computation}, \bold{19}(6), 1503-27.
