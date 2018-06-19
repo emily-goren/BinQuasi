@@ -1,10 +1,10 @@
 ---
 title: "BinQuasi"
 author: "Emily Goren"
-date: "March 22, 2018"
+date: "June 18, 2018"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{BinQuasi Quick Start Guide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-This package provides code to call peaks in ChIP-seq data with biological replicates using the BinQuasi algorithm.
+This package provides code to call peaks in ChIP-seq data with biological replicates using the BinQuasi algorithm of Goren, Liu, Wang, and Wang (2018) [doi.org/10.1093/bioinformatics/bty227](https://doi.org/10.1093/bioinformatics/bty227).
 
 
 ## Data Preprocessing

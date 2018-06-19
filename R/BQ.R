@@ -56,9 +56,14 @@
 #'   setting \code{bias.fold.tolerance=1} will always perform bias reduction. 
 #'   See \code{\link{NBDev}} or \code{\link{PoisDev}} for details.
 #'   
-#' @details This function calls peaks in replicated ChIP-seq data.
+#' @details This function calls peaks in replicated ChIP-seq data using the BinQuasi algorithm of Goren, Liu, Wang, and Wang.
 #' 
-#' @references Shimazaki and Shinomoto (2007)  "A method for selecting the bin 
+#' @references 
+#' 
+#' Goren, Liu, Wang and Wang (2018) "BinQuasi: a peak detection method for 
+#' ChIP-sequencing data with biological replicates" \emph{Bioinformatics}.
+#' 
+#' Shimazaki and Shinomoto (2007)  "A method for selecting the bin 
 #' size of a time histogram" \emph{Neural computation}, \bold{19}(6), 1503-27.
 #' 
 #' Ramachandran, Palidwor, Porter, and Perkins (2013) "MaSC: 
@@ -84,6 +89,7 @@
 #' \dontrun{
 #' # Fit a quasi-negative binomial model using all default settings.
 #' fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
+#' fpath
 #' results <- BQ(fpath, ChIP.files = c('C1.bam', 'C2.bam'), control.files = c('I1.bam', 'I2.bam'))
 #' head(results$peaks)
 #' }

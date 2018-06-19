@@ -94,18 +94,22 @@ A list containing:
 Use the BinQuasi algorithm to call peaks using ChIP-seq data with biological replicates.
 }
 \details{
-This function calls peaks in replicated ChIP-seq data.
+This function calls peaks in replicated ChIP-seq data using the BinQuasi algorithm of Goren, Liu, Wang, and Wang.
 }
 \examples{
 \dontrun{
 # Fit a quasi-negative binomial model using all default settings.
 fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
+fpath
 results <- BQ(fpath, ChIP.files = c('C1.bam', 'C2.bam'), control.files = c('I1.bam', 'I2.bam'))
 head(results$peaks)
 }
 
 }
 \references{
+Goren, Liu, Wang and Wang (2018) "BinQuasi: a peak detection method for 
+ChIP-sequencing data with biological replicates" \emph{Bioinformatics}.
+
 Shimazaki and Shinomoto (2007)  "A method for selecting the bin 
 size of a time histogram" \emph{Neural computation}, \bold{19}(6), 1503-27.
 

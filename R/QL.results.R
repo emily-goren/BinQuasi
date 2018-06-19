@@ -43,7 +43,12 @@
 #'@author Emily Goren (\email{emily.goren@gmail.com}) based on modifications of
 #'  code by Steve Lund.
 #'  
-#'@references Benjamini and Hochberg (1995) "Controlling the false discovery
+#'@references 
+#'
+#' Goren, Liu, Wang and Wang (2018) "BinQuasi: a peak detection method for 
+#' ChIP-sequencing data with biological replicates" \emph{Bioinformatics}.
+#' 
+#' Benjamini and Hochberg (1995) "Controlling the false discovery
 #'rate: a practical and powerful approach to multiple testing" \emph{Journal of
 #'the Royal Statistical Society Series B}, \bold{57}: 289-300.
 #'

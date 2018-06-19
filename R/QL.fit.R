@@ -97,6 +97,9 @@
 #'   
 #' @references
 #' 
+#' Goren, Liu, Wang and Wang (2018) "BinQuasi: a peak detection method for 
+#' ChIP-sequencing data with biological replicates" \emph{Bioinformatics}.
+#' 
 #' Kosmidis and Firth (2009) "Bias reduction in exponential family nonlinear
 #' models" \emph{Biometrika}, \bold{96}, 793--804.
 #' 

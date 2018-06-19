@@ -71,13 +71,15 @@ This function creates a count table of ChIP sequencing data
 }
 \examples{
 \dontrun{
-d <- count.table(dir = '/Users/username/mybamfolder/',
-                 ChIP.files = c('chip1.bam', 'chip2.bam'),
-                 control.files = c('inp1.bam', 'inp2.bam'),
+fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
+d <- count.table(dir = fpath,
+                 ChIP.files = c('C1.bam', 'C2.bam'),
+                 control.files = c('I1.bam', 'I2.bam'),
                  bin.size = 60, frag.length = c(101, 300, 150, 10),
                  minimum.count = 20)
                  head(d$counts)
 }
+
 
 }
 \references{

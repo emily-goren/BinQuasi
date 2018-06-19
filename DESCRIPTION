@@ -1,6 +1,6 @@
 Package: BinQuasi
-Version: 0.1-3
-Date: 2018-03-26
+Version: 0.1-4
+Date: 2018-06-18
 Title: Analyzing Replicated ChIP Sequencing Data Using Quasi-Likelihood
 Authors@R: c(
   person("Emily", "Goren", role=c("aut", "cre"), email="emily.goren@gmail.com"),
@@ -10,7 +10,7 @@ Authors@R: c(
   person("Daniel", "Gerhard", role="aut", comment="The author of mcprofile::orglm.fit, which was modified slightly and used under the same name in this package."), 
   person("R Core Team", role="aut", comment="The author of stats::glm.fit, which was modified slightly leading to glm.fit3 in this package.")
   )
-Imports: edgeR, mgcv, pracma, quadprog, Rsamtools, GenomicAlignments, GenomicRanges, IRanges, csaw, SummarizedExperiment, BiocGenerics
+Imports: edgeR, mgcv, pracma, quadprog, Rsamtools, GenomicAlignments, GenomicRanges, IRanges, csaw(>= 1.12.0), SummarizedExperiment, BiocGenerics, S4Vectors
 Suggests: nleqslv,
     knitr,
     rmarkdown

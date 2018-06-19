@@ -9,12 +9,13 @@
 #' 
 #' @import edgeR
 #' @import quadprog
-#' @import GenomicRanges
 #' @import IRanges
+#' @import GenomicRanges
 #' @import GenomicAlignments
 #' @import SummarizedExperiment
 #' @import csaw
 #' @import BiocGenerics
+#' @import S4Vectors
 #' @import Rsamtools
 #' 
 #' @importFrom mgcv negbin

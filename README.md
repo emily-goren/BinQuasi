@@ -1,6 +1,6 @@
 # BinQuasi
 
-This package provides code to call peaks in ChIP-seq data with biological replicates using the BinQuasi algorithm.
+This package provides code to call peaks in ChIP-seq data with biological replicates using the BinQuasi algorithm of Goren, Liu, Wang, and Wang (2018) [doi.org/10.1093/bioinformatics/bty227](https://doi.org/10.1093/bioinformatics/bty227).
 
 ## Installation
 

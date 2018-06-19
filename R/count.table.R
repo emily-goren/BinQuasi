@@ -42,7 +42,7 @@ fragment.length <- function(dir, ChIP.files, control.files) {
     warning("The supplied bam files were not all aligned to the same chromosome set. Using chromosomes from the first bam file to estimate fragment length.")
   chromosomes <- chromosomes[[1]]
   chr.ranges <- GRanges(seqnames = names(chromosomes), ranges = IRanges(1, chromosomes))
-  param <- lapply(chr.ranges, function(x) ScanBamParam(which=x))
+  param <- lapply(1:length(chr.ranges), function(i) ScanBamParam(which=chr.ranges[i]))
   
   # Estimate fragment length for each chromosome within each replicate.
   fragLen <- sapply(1:n, function(i) { # Apply over replicates.
@@ -192,13 +192,15 @@ bin.width <- function(dir, ChIP.files, frag.length) {
 #'   
 #' @examples
 #' \dontrun{
-#' d <- count.table(dir = '/Users/username/mybamfolder/',
-#'                  ChIP.files = c('chip1.bam', 'chip2.bam'),
-#'                  control.files = c('inp1.bam', 'inp2.bam'),
+#' fpath <- paste0(system.file(package = 'BinQuasi'), '/extdata/')
+#' d <- count.table(dir = fpath,
+#'                  ChIP.files = c('C1.bam', 'C2.bam'),
+#'                  control.files = c('I1.bam', 'I2.bam'),
 #'                  bin.size = 60, frag.length = c(101, 300, 150, 10),
 #'                  minimum.count = 20)
 #'                  head(d$counts)
 #' }
+#' 
 #' 
 #' @export
 #' 
