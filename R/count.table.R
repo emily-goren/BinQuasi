@@ -42,7 +42,7 @@ fragment.length <- function(dir, ChIP.files, control.files) {
     warning("The supplied bam files were not all aligned to the same chromosome set. Using chromosomes from the first bam file to estimate fragment length.")
   chromosomes <- chromosomes[[1]]
   chr.ranges <- GRanges(seqnames = names(chromosomes), ranges = IRanges(1, chromosomes))
-  param <- lapply(1:length(chr.ranges), function(i) ScanBamParam(which=chr.ranges[i]))
+  param <- lapply(seq_along(chr.ranges), function(i) ScanBamParam(which=chr.ranges[i]))
   
   # Estimate fragment length for each chromosome within each replicate.
   fragLen <- sapply(1:n, function(i) { # Apply over replicates.
@@ -87,10 +87,10 @@ bin.width <- function(dir, ChIP.files, frag.length) {
   samHeader <- lapply(bfList, function(x) scanBamHeader(x$path))
   
   # Extract largest chromosome from each sample.
-  chrs <- lapply(samHeader, function(x) {
-    t <- x[[1]]$targets
-    return(t[which.max(t)])
-  })
+  # chrs <- lapply(samHeader, function(x) {
+  #   t <- x[[1]]$targets
+  #   return(t[which.max(t)])
+  # })
   
   # Extract chromosomes from each sample.
   chrs <- lapply(samHeader, function(x) x[[1]]$targets)

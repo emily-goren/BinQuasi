@@ -3,8 +3,7 @@ simes <- function(p) min(length(p) * p / rank(p))
 get.simes <- function(bins, regs, pvals) { 
   ## Supply bins, regions as GRanges objects
   hits <- findOverlaps(bins, regs)
-  nbins <- length(regs)
-  out <- sapply(1:nbins, function(j) {
+  out <- sapply(seq_along(regs), function(j) {
     idx <- hits@from[hits@to == j]
     p.simes <- simes(pvals[idx])
     return(p.simes)
