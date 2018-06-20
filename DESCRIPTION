@@ -10,7 +10,7 @@ Authors@R: c(
   person("Daniel", "Gerhard", role="aut", comment="The author of mcprofile::orglm.fit, which was modified slightly and used under the same name in this package."), 
   person("R Core Team", role="aut", comment="The author of stats::glm.fit, which was modified slightly leading to glm.fit3 in this package.")
   )
-Imports: edgeR, mgcv, pracma, quadprog, Rsamtools, GenomicAlignments, GenomicRanges, IRanges, csaw(>= 1.12.0), SummarizedExperiment, BiocGenerics, S4Vectors
+Imports: edgeR, mgcv, pracma, quadprog, Rsamtools, GenomicAlignments, GenomicRanges, IRanges, csaw(>= 1.12.0), SummarizedExperiment, BiocGenerics, S4Vectors, RMySQL
 Suggests: nleqslv,
     knitr,
     rmarkdown

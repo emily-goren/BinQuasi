@@ -17,6 +17,7 @@
 #' @import BiocGenerics
 #' @import S4Vectors
 #' @import Rsamtools
+#' @import RMySQL
 #' 
 #' @importFrom mgcv negbin
 #' @importFrom pracma broyden
