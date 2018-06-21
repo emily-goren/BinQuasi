@@ -33,3 +33,22 @@ See the package documentation for information on changing the default settings.
 ```R
 ?BQ
 ```
+
+## Exporting Results
+
+The code below saves the called peaks in [BED format](http://genome.ucsc.edu/FAQ/FAQformat#format1) in the file "BinQuasiPeaks.bed".
+```R
+# Sort peaks by p-value
+opeaks <- results$peaks[order(results$peaks$P.val),]
+# Name the peaks by rank
+opeaks$name <- paste0('BQ_Peak_', 1:nrow(opeaks))
+# Save as .bed file, setting the scores to be -log10(p-value)
+bedout <- data.frame(chrom = opeaks$chr,
+                                    chromStart = opeaks$start,
+                                    chromEnd = opeaks$end,
+                                    name = opeaks$name,
+                                    score = -log10(opeaks$P.val),
+                                    strand = c(rep(".",  nrow(opeaks))))
+head(bedout)
+write.table(bedout, file="BinQuasiPeaks.bed", quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
+```
