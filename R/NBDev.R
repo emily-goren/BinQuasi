@@ -114,9 +114,12 @@ NBDev <- function(counts, design, log.offset, nb.disp, print.progress=TRUE, bias
   log10=log(10)
   
   ### For each gene and given design matrix, fit glm using provided negative binomial dispersion estimate
-  for (gn in 1:nrow(counts)) {
+  ncts <- nrow(counts)
+  wnds <- c(2,10,100,500,1000,2500)
+  if (ncts >= 5000) wnds <- c(wnds, seq(5000, ncts, by = 5000))
+  for (gn in 1:ncts) {
     ### If wanted, provide running progress update (eventually once every 5000 genes)
-    if (gn %in% c(2, 10, 100, 500, 1000, 2500, 5000 * (1:200)) & print.progress)
+    if (gn %in% wnds & print.progress)
       print(paste("Analyzing Window #", gn))
     
     #### For 2000 Fly genes, glm takes roughly 9 seconds (optim took roughly 21 seconds)

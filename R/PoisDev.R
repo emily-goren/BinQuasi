@@ -134,9 +134,13 @@ PoisDev<-function(counts,design,log.offset,print.progress=TRUE,bias.fold.toleran
     parms<-parms.constrained<-matrix(NA,nrow(counts),ncol(design))
     
     ### For each window and given design matrix, fit GLM to find model parameters (for mean structure) that optimize quasi-likelihood
-    for(i in 1:nrow(counts)){
+    ncts <- nrow(counts)
+    wnds <- c(2,10,100,500,1000,2500)
+    if (ncts >= 5000) wnds <- c(wnds, seq(5000, ncts, by = 5000))
+    for(i in 1:ncts){
       ### If wanted, provide running progress update (eventually once every 5000 windows)
-      if(i%in%c(2,10,100,500,1000,2500,4000,5000*(1:200))&print.progress) print(paste("Analyzing Window #",i))
+      if(i %in% wnds & print.progress) 
+        print(paste("Analyzing Window #",i))
       
       ### Fit GLM
       res<-withCallingHandlers(
