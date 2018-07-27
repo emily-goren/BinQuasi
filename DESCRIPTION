@@ -1,6 +1,6 @@
 Package: BinQuasi
-Version: 0.1-5
-Date: 2018-06-19
+Version: 0.1-6
+Date: 2018-07-26
 Title: Analyzing Replicated ChIP Sequencing Data Using Quasi-Likelihood
 Authors@R: c(
   person("Emily", "Goren", role=c("aut", "cre"), email="emily.goren@gmail.com"),
